@@ -1,0 +1,12 @@
+PODS:
+  - PubNub/Core (4.5.4)
+  - PubNub/Fabric (4.5.4):
+    - PubNub/Core
+
+DEPENDENCIES:
+  - PubNub/Fabric
+
+SPEC CHECKSUMS:
+  PubNub: 5b1b16bcd6fcc4d57191c107fc63ce779f62b59c
+
+COCOAPODS: 0.39.0
