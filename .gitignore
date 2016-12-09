@@ -1,0 +1,39 @@
+## OS X Finder
+.DS_Store
+
+## Build Generated
+kart_ios/.DS_Store
+*/build/*
+build/
+DerivedData
+
+## Vearious Whatevers
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+
+
+profile
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
+.idea/
+*.ipa
+*.hmap
+*.xccheckout
+
+#CocoaPods
+Kart/Pods
+Pods
+
+/.DS_Store
+
+.ruby-version
+Kart.xcworkspace/xcuserdata/SammyG.xcuserdatad/UserInterfaceState.xcuserstate
+Kart/Assets.xcassets/.DS_Store
