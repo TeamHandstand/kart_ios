@@ -58,14 +58,14 @@ class MapViewController: UIViewController {
     } else {
       mapView.userTrackingMode = .None
     }
+  func moveRandomPlayer() {
+    let userLocation = randomUserLocation()
     
-//    let userLocation = randomUserLocation()
-//    
-//    let obj = ["name": userLocation.name, "latitude": userLocation.latitude, "longitude": userLocation.longitude]
-//    
-//    PubNubManager.sharedInstance.publishMessage(obj, onChannel: "run-channel") { (status) in
-//      print("here")
-//    }
+    let obj = ["name": userLocation.name, "latitude": userLocation.latitude, "longitude": userLocation.longitude] as [String : Any]
+    
+    PubNubManager.sharedInstance.publishMessage(obj, onChannel: "run-channel") { (status) in
+      print("here")
+    }
   }
   
   func newUserLocationReceived(note: NSNotification) {
