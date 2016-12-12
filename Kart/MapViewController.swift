@@ -26,13 +26,13 @@ class MapViewController: UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(customView: findMe)
     
     let button = UIButton()
-    button.setTitle("Random", for: UIControlState())
-    button.setTitleColor(UIColor.black, for: UIControlState())
+    button.setTitle("Random", forState: .Normal)
+    button.setTitleColor(UIColor.blackColor(), forState: .Normal)
     button.sizeToFit()
-    button.addTarget(self, action: #selector(MapViewController.moveRandomPlayer), for: .touchUpInside)
+    button.addTarget(self, action: #selector(MapViewController.moveRandomPlayer), forControlEvents: .TouchUpInside)
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     
-    NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.newUserLocationReceived(_:)), name: NSNotification.Name(rawValue: KartNotificationNewUserLocationReceived), object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MapViewController.newUserLocationReceived(_:)), name: KartNotificationNewUserLocationReceived, object: nil)
   }
   
   func randomUserLocation() -> UserLocation {
