@@ -79,17 +79,51 @@ class MapViewController: UIViewController {
     
     let userLocation = UserLocation(name: name, latitude: lat.doubleValue, longitude: long.doubleValue)
     let annotation = UserLocationAnnotation(userLocation: userLocation)
+    var idx = -1
     
     if mappedUserAnnotations.count > 0 {
       for i in 0...mappedUserAnnotations.count-1 {
         if mappedUserAnnotations[i].userName == annotation.userName {
-          mapView.removeAnnotation(mappedUserAnnotations[i])
+          idx = i
         }
       }
     }
     
-    mappedUserAnnotations.append(annotation)
-    mapView.addAnnotation(annotation)
+    animateAnnotation(idx < 0 ? annotation : mappedUserAnnotations[idx], toAnnotationCoordinate: annotation, arrayIndex: idx)
+  }
+  
+  func animateAnnotation(_ annotation: UserLocationAnnotation, toAnnotationCoordinate finalAnnotation: UserLocationAnnotation, arrayIndex: Int) {
+    let animationPoint = mapView.convert(finalAnnotation.coordinate, toPointTo: mapView)
+    let annotView = mapView.view(for: annotation)
+    
+    UIView.animate(withDuration: 0.2, animations: { 
+      annotView?.center = animationPoint
+      }, completion: { (comp) in
+        if arrayIndex >= 0 {
+          self.mappedUserAnnotations.remove(at: arrayIndex)
+        }
+        self.mappedUserAnnotations.append(annotation)
+        self.mapView.addAnnotation(annotation)
+    }) 
+    
+//    return annotation
+//    
+//    var lastAnnotation = annotation
+//    for i in 0...coords.count-1 {
+//      let coord = coords[i]
+//      
+//      delay(totalDuration/Double(coords.count)*Double(i), closure: {
+//        let userLoc = UserLocation(name: name, latitude: coord.latitude, longitude: coord.longitude)
+//        let anno = UserLocationAnnotation(userLocation: userLoc)
+//        self.mappedUserAnnotations.removeAtIndex(self.mappedUserAnnotations.indexOf(lastAnnotation)!)
+//        self.mapView.removeAnnotation(lastAnnotation)
+//        self.mapView.addAnnotation(anno)
+//        lastAnnotation = anno
+//      })
+//    }
+//    
+//    let lastCoord = coords.last
+//    return UserLocationAnnotation(userLocation: UserLocation(name: name, latitude: lastCoord!.latitude, longitude: lastCoord!.longitude))
   }
 
   override func didReceiveMemoryWarning() {
