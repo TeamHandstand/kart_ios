@@ -18,14 +18,21 @@ class MapViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    let button = UIButton()
-    button.setTitle("Me!", forState: .Normal)
-    button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-    button.sizeToFit()
-    button.addTarget(self, action: #selector(MapViewController.buttonPressed), forControlEvents: .TouchUpInside)
-    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+    let findMe = UIButton()
+    findMe.setTitle("Me!", forState: .Normal)
+    findMe.setTitleColor(UIColor.blackColor(), forState: .Normal)
+    findMe.sizeToFit()
+    findMe.addTarget(self, action: #selector(MapViewController.buttonPressed), forControlEvents: .TouchUpInside)
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: findMe)
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MapViewController.newUserLocationReceived(_:)), name: KartNotificationNewUserLocationReceived, object: nil)
+    let button = UIButton()
+    button.setTitle("Random", for: UIControlState())
+    button.setTitleColor(UIColor.black, for: UIControlState())
+    button.sizeToFit()
+    button.addTarget(self, action: #selector(MapViewController.moveRandomPlayer), for: .touchUpInside)
+    navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.newUserLocationReceived(_:)), name: NSNotification.Name(rawValue: KartNotificationNewUserLocationReceived), object: nil)
   }
   
   func randomUserLocation() -> UserLocation {
