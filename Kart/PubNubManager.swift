@@ -23,7 +23,7 @@ final class PubNubManager: NSObject, PNObjectEventListener {
     self.kartClient?.subscribeToChannels(["run-channel"], withPresence: false)
   }
   
-  func publishMessage(message: AnyObject, onChannel channel: String, withCompletion completion: PNPublishCompletionBlock?) {
+  func publishMessage(message: [String: AnyObject], onChannel channel: String, withCompletion completion: PNPublishCompletionBlock?) {
     kartClient?.publish(message, toChannel: channel, withCompletion: completion)
   }
   
