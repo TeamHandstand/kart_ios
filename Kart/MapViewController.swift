@@ -151,7 +151,8 @@ extension MapViewController: MKMapViewDelegate {
     print(mapView.region.span.longitudeDelta)
   }
     if let annot = annotation as? UserLocationAnnotation {
-      let annotView = UserLocationAnnotationView(annotation: annotation, reuseIdentifier: annot.userName)
+      var annotView: MKAnnotationView
+      annotView = mapView.dequeueReusableAnnotationView(withIdentifier: annot.userName) ?? UserLocationAnnotationView(annotation: annotation, reuseIdentifier: annot.userName)
       annotView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
       mappedUserAnnotations.append(annot)
       return annotView
