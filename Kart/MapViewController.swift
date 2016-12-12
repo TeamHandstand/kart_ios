@@ -139,6 +139,17 @@ extension MapViewController: MKMapViewDelegate {
   }
   
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    print(mapView.region)
+    
+    print("Span")
+    print(mapView.region.span)
+    
+    print("Lat")
+    print(mapView.region.span.latitudeDelta)
+    
+    print("Long")
+    print(mapView.region.span.longitudeDelta)
+  }
     if let annot = annotation as? UserLocationAnnotation {
       let annotView = UserLocationAnnotationView(annotation: annotation, reuseIdentifier: annot.userName)
       annotView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
