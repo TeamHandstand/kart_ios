@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9222DE91DFB302A000D124D /* KartLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9222DE81DFB302A000D124D /* KartLocationManager.swift */; };
+		A9222DEC1DFB6841000D124D /* AnnotationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9222DEB1DFB6841000D124D /* AnnotationAnimator.swift */; };
 		A9B4AE761DFA3E43007ED80A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4AE751DFA3E43007ED80A /* AppDelegate.swift */; };
 		A9B4AE781DFA3E43007ED80A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4AE771DFA3E43007ED80A /* MapViewController.swift */; };
 		A9B4AE7A1DFA3E43007ED80A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4AE791DFA3E43007ED80A /* SecondViewController.swift */; };
@@ -47,6 +48,8 @@
 		11A439AF3AE7FB423DB8406C /* Pods-Kart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kart/Pods-Kart.debug.xcconfig"; sourceTree = "<group>"; };
 		302AA1A7DBF956473CBF2699 /* Pods_Kart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9222DE81DFB302A000D124D /* KartLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KartLocationManager.swift; sourceTree = "<group>"; };
+		A9222DEB1DFB6841000D124D /* AnnotationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationAnimator.swift; sourceTree = "<group>"; };
+		A992B3C51DFF34F30046B7D0 /* Kart-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kart-Bridging-Header.h"; sourceTree = "<group>"; };
 		A9B4AE721DFA3E43007ED80A /* Kart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B4AE751DFA3E43007ED80A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9B4AE771DFA3E43007ED80A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 		A9B4AE691DFA3E43007ED80A = {
 			isa = PBXGroup;
 			children = (
+				A9222DEB1DFB6841000D124D /* AnnotationAnimator.swift */,
+				A992B3C51DFF34F30046B7D0 /* Kart-Bridging-Header.h */,
 				A9B4AEA51DFA4074007ED80A /* MapKit.framework */,
 				A9B4AE741DFA3E43007ED80A /* Kart */,
 				A9B4AE8B1DFA3E43007ED80A /* KartTests */,
@@ -367,6 +372,7 @@
 				A9B4AE781DFA3E43007ED80A /* MapViewController.swift in Sources */,
 				A9B4AEA81DFA4191007ED80A /* Constants.swift in Sources */,
 				A9B4AEAC1DFA445B007ED80A /* UserLocationAnnotations.swift in Sources */,
+				A9222DEC1DFB6841000D124D /* AnnotationAnimator.swift in Sources */,
 				A9B4AEB01DFA94F8007ED80A /* PubNubManager.swift in Sources */,
 				A9B4AEAA1DFA41C7007ED80A /* UserLocation.swift in Sources */,
 				A9222DE91DFB302A000D124D /* KartLocationManager.swift in Sources */,
@@ -520,6 +526,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Team-Handstand.Kart";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Kart-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -535,6 +542,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Team-Handstand.Kart";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Kart-Bridging-Header.h";
 			};
 			name = Release;
 		};
