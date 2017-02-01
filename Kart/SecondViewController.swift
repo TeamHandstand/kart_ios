@@ -16,6 +16,10 @@ class SecondViewController: UIViewController {
   @IBOutlet weak var trackingSwitch: UISwitch!
   @IBOutlet weak var trackingLabel: UILabel!
   
+  @IBOutlet weak var xLabel: UILabel!
+  @IBOutlet weak var yLabel: UILabel!
+  @IBOutlet weak var zLabel: UILabel!
+  
   @IBOutlet weak var arrowImage: UIImageView!
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,6 +28,12 @@ class SecondViewController: UIViewController {
     
     firstNameTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(KartUserDefaultsFirstName)
     lastNameTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(KartUserDefaultsLastName)
+    
+    KartMotionManager.sharedInstance.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) { (data, error) in
+      self.xLabel.text = "X: \(data?.acceleration.x)" // == 0 when flat camera down
+      self.yLabel.text = "Y: \(data?.acceleration.y)" // == 0 when flat camera down
+      self.zLabel.text = "Z: \(data?.acceleration.z)" // == -1 when flat camera down
+    }
   }
   
   override func viewWillAppear(animated: Bool) {

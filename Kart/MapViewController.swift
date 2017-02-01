@@ -9,10 +9,36 @@
 import UIKit
 import MapKit
 
+class  KartOverlayRenderer: MKOverlayRenderer {
+  override func setNeedsDisplayInMapRect(mapRect: MKMapRect) {
+    print("setNeedsDisplayInMapRect")
+    return super.setNeedsDisplayInMapRect(mapRect)
+  }
+  
+  override func mapRectForRect(rect: CGRect) -> MKMapRect {
+    print("mapRectForRect")
+    return super.mapRectForRect(rect)
+  }
+  
+  override func rectForMapRect(mapRect: MKMapRect) -> CGRect {
+    print("rectForMapRect")
+    return super.rectForMapRect(mapRect)
+  }
+  
+  override func drawMapRect(mapRect: MKMapRect, zoomScale: MKZoomScale, inContext context: CGContext) {
+    super.drawMapRect(mapRect, zoomScale: zoomScale, inContext: context)
+    print("drawMapRect")
+  }
+}
+
 class MapViewController: UIViewController {
 
   @IBOutlet weak var mapView: MKMapView!
+  
   var mappedUserAnnotations = [UserLocationAnnotation]()
+  var animatingAnnotation = false
+  
+  let myRenderer = KartOverlayRenderer()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,7 +58,14 @@ class MapViewController: UIViewController {
     button.addTarget(self, action: #selector(MapViewController.moveRandomPlayer), forControlEvents: .TouchUpInside)
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     
+    mapView.centerCoordinate = CLLocationCoordinate2D(latitude: 37.770780, longitude: -122.433248)
+    mapView.setRegion(MKCoordinateRegionMakeWithDistance(mapView.centerCoordinate, 9000, 9000), animated: false)
+    
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MapViewController.newUserLocationReceived(_:)), name: KartNotificationNewUserLocationReceived, object: nil)
+  }
+  
+  func convertPointToMapView(point: MKMapPoint) -> CGPoint {
+    return mapView.convertCoordinate(MKCoordinateForMapPoint(point), toPointToView: mapView)
   }
   
   func randomUserLocation() -> UserLocation {
@@ -58,13 +91,15 @@ class MapViewController: UIViewController {
     } else {
       mapView.userTrackingMode = .None
     }
+  }
+  
   func moveRandomPlayer() {
     let userLocation = randomUserLocation()
     
-    let obj = ["name": userLocation.name, "latitude": userLocation.latitude, "longitude": userLocation.longitude] as [String : Any]
+    let obj = ["name": userLocation.name, "latitude": userLocation.latitude, "longitude": userLocation.longitude]
     
     PubNubManager.sharedInstance.publishMessage(obj, onChannel: "run-channel") { (status) in
-      print("here")
+      
     }
   }
   
@@ -92,38 +127,28 @@ class MapViewController: UIViewController {
     animateAnnotation(idx < 0 ? annotation : mappedUserAnnotations[idx], toAnnotationCoordinate: annotation, arrayIndex: idx)
   }
   
-  func animateAnnotation(_ annotation: UserLocationAnnotation, toAnnotationCoordinate finalAnnotation: UserLocationAnnotation, arrayIndex: Int) {
-    let animationPoint = mapView.convert(finalAnnotation.coordinate, toPointTo: mapView)
-    let annotView = mapView.view(for: annotation)
+  func animateAnnotation(previousAnnotation: UserLocationAnnotation, toAnnotationCoordinate finalAnnotation: UserLocationAnnotation, arrayIndex: Int) {
+    if animatingAnnotation {
+      print("****** MISSED AN ANIMATION")
+      return
+    }
+    animatingAnnotation = true
+    let animationPoint = mapView.convertCoordinate(finalAnnotation.coordinate, toPointToView: mapView)
+    let annotView = mapView.viewForAnnotation(previousAnnotation)
     
-    UIView.animate(withDuration: 0.2, animations: { 
+    //If animation time too long, might miss coordinate animations
+    UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: {
       annotView?.center = animationPoint
-      }, completion: { (comp) in
+      }) { (comp) in
         if arrayIndex >= 0 {
-          self.mappedUserAnnotations.remove(at: arrayIndex)
+          self.mappedUserAnnotations.removeAtIndex(arrayIndex)
+          self.mapView.removeAnnotation(previousAnnotation)
         }
-        self.mappedUserAnnotations.append(annotation)
-        self.mapView.addAnnotation(annotation)
-    }) 
-    
-//    return annotation
-//    
-//    var lastAnnotation = annotation
-//    for i in 0...coords.count-1 {
-//      let coord = coords[i]
-//      
-//      delay(totalDuration/Double(coords.count)*Double(i), closure: {
-//        let userLoc = UserLocation(name: name, latitude: coord.latitude, longitude: coord.longitude)
-//        let anno = UserLocationAnnotation(userLocation: userLoc)
-//        self.mappedUserAnnotations.removeAtIndex(self.mappedUserAnnotations.indexOf(lastAnnotation)!)
-//        self.mapView.removeAnnotation(lastAnnotation)
-//        self.mapView.addAnnotation(anno)
-//        lastAnnotation = anno
-//      })
-//    }
-//    
-//    let lastCoord = coords.last
-//    return UserLocationAnnotation(userLocation: UserLocation(name: name, latitude: lastCoord!.latitude, longitude: lastCoord!.longitude))
+        
+        self.mappedUserAnnotations.append(finalAnnotation)
+        self.mapView.addAnnotation(finalAnnotation)
+        self.animatingAnnotation = false
+    }
   }
 
   override func didReceiveMemoryWarning() {
@@ -138,21 +163,22 @@ extension MapViewController: MKMapViewDelegate {
     
   }
   
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    print(mapView.region)
-    
-    print("Span")
-    print(mapView.region.span)
-    
-    print("Lat")
-    print(mapView.region.span.latitudeDelta)
-    
-    print("Long")
-    print(mapView.region.span.longitudeDelta)
+  func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+    self.mapView.setRegion(mapView.region, animated: true)
   }
+  
+  func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    self.mapView.setRegion(mapView.region, animated: true)
+  }
+  
+  func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    return myRenderer
+  }
+  
+  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
     if let annot = annotation as? UserLocationAnnotation {
       var annotView: MKAnnotationView
-      annotView = mapView.dequeueReusableAnnotationView(withIdentifier: annot.userName) ?? UserLocationAnnotationView(annotation: annotation, reuseIdentifier: annot.userName)
+      annotView = mapView.dequeueReusableAnnotationViewWithIdentifier(annot.userName) ?? UserLocationAnnotationView(annotation: annotation, reuseIdentifier: annot.userName)
       annotView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
       mappedUserAnnotations.append(annot)
       return annotView
