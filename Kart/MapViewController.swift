@@ -10,23 +10,23 @@ import UIKit
 import MapKit
 
 class  KartOverlayRenderer: MKOverlayRenderer {
-  override func setNeedsDisplayInMapRect(mapRect: MKMapRect) {
+  override func setNeedsDisplayIn(_ mapRect: MKMapRect) {
     print("setNeedsDisplayInMapRect")
-    return super.setNeedsDisplayInMapRect(mapRect)
+    return super.setNeedsDisplayIn(mapRect)
   }
   
-  override func mapRectForRect(rect: CGRect) -> MKMapRect {
+  override func mapRect(for rect: CGRect) -> MKMapRect {
     print("mapRectForRect")
-    return super.mapRectForRect(rect)
+    return super.mapRect(for: rect)
   }
   
-  override func rectForMapRect(mapRect: MKMapRect) -> CGRect {
+  override func rect(for mapRect: MKMapRect) -> CGRect {
     print("rectForMapRect")
-    return super.rectForMapRect(mapRect)
+    return super.rect(for: mapRect)
   }
   
-  override func drawMapRect(mapRect: MKMapRect, zoomScale: MKZoomScale, inContext context: CGContext) {
-    super.drawMapRect(mapRect, zoomScale: zoomScale, inContext: context)
+  override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
+    super.draw(mapRect, zoomScale: zoomScale, in: context)
     print("drawMapRect")
   }
 }
@@ -45,27 +45,27 @@ class MapViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.
     
     let findMe = UIButton()
-    findMe.setTitle("Me!", forState: .Normal)
-    findMe.setTitleColor(UIColor.blackColor(), forState: .Normal)
+    findMe.setTitle("Me!", for: UIControlState())
+    findMe.setTitleColor(UIColor.black, for: UIControlState())
     findMe.sizeToFit()
-    findMe.addTarget(self, action: #selector(MapViewController.buttonPressed), forControlEvents: .TouchUpInside)
+    findMe.addTarget(self, action: #selector(MapViewController.buttonPressed), for: .touchUpInside)
     navigationItem.rightBarButtonItem = UIBarButtonItem(customView: findMe)
     
     let button = UIButton()
-    button.setTitle("Random", forState: .Normal)
-    button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+    button.setTitle("Random", for: UIControlState())
+    button.setTitleColor(UIColor.black, for: UIControlState())
     button.sizeToFit()
-    button.addTarget(self, action: #selector(MapViewController.moveRandomPlayer), forControlEvents: .TouchUpInside)
+    button.addTarget(self, action: #selector(MapViewController.moveRandomPlayer), for: .touchUpInside)
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     
     mapView.centerCoordinate = CLLocationCoordinate2D(latitude: 37.770780, longitude: -122.433248)
     mapView.setRegion(MKCoordinateRegionMakeWithDistance(mapView.centerCoordinate, 9000, 9000), animated: false)
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MapViewController.newUserLocationReceived(_:)), name: KartNotificationNewUserLocationReceived, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.newUserLocationReceived(_:)), name: NSNotification.Name(rawValue: KartNotificationNewUserLocationReceived), object: nil)
   }
   
-  func convertPointToMapView(point: MKMapPoint) -> CGPoint {
-    return mapView.convertCoordinate(MKCoordinateForMapPoint(point), toPointToView: mapView)
+  func convertPointToMapView(_ point: MKMapPoint) -> CGPoint {
+    return mapView.convert(MKCoordinateForMapPoint(point), toPointTo: mapView)
   }
   
   func randomUserLocation() -> UserLocation {
@@ -86,24 +86,24 @@ class MapViewController: UIViewController {
   }
   
   func buttonPressed() {
-    if (mapView.userTrackingMode == .None) {
-      mapView.userTrackingMode = .Follow
+    if (mapView.userTrackingMode == .none) {
+      mapView.userTrackingMode = .follow
     } else {
-      mapView.userTrackingMode = .None
+      mapView.userTrackingMode = .none
     }
   }
   
   func moveRandomPlayer() {
     let userLocation = randomUserLocation()
     
-    let obj = ["name": userLocation.name, "latitude": userLocation.latitude, "longitude": userLocation.longitude]
+    let obj = ["name": userLocation.name, "latitude": userLocation.latitude, "longitude": userLocation.longitude] as [String : Any]
     
-    PubNubManager.sharedInstance.publishMessage(obj, onChannel: "run-channel") { (status) in
+//    PubNubManager.sharedInstance.publishMessage(obj, onChannel: "run-channel") { (status) in
       
-    }
+//    }
   }
   
-  func newUserLocationReceived(note: NSNotification) {
+  func newUserLocationReceived(_ note: Notification) {
     guard let userDict = note.object as? NSDictionary else {
       return
     }
@@ -127,21 +127,21 @@ class MapViewController: UIViewController {
     animateAnnotation(idx < 0 ? annotation : mappedUserAnnotations[idx], toAnnotationCoordinate: annotation, arrayIndex: idx)
   }
   
-  func animateAnnotation(previousAnnotation: UserLocationAnnotation, toAnnotationCoordinate finalAnnotation: UserLocationAnnotation, arrayIndex: Int) {
+  func animateAnnotation(_ previousAnnotation: UserLocationAnnotation, toAnnotationCoordinate finalAnnotation: UserLocationAnnotation, arrayIndex: Int) {
     if animatingAnnotation {
       print("****** MISSED AN ANIMATION")
       return
     }
     animatingAnnotation = true
-    let animationPoint = mapView.convertCoordinate(finalAnnotation.coordinate, toPointToView: mapView)
-    let annotView = mapView.viewForAnnotation(previousAnnotation)
+    let animationPoint = mapView.convert(finalAnnotation.coordinate, toPointTo: mapView)
+    let annotView = mapView.view(for: previousAnnotation)
     
     //If animation time too long, might miss coordinate animations
-    UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: {
+    UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions(), animations: {
       annotView?.center = animationPoint
       }) { (comp) in
         if arrayIndex >= 0 {
-          self.mappedUserAnnotations.removeAtIndex(arrayIndex)
+          self.mappedUserAnnotations.remove(at: arrayIndex)
           self.mapView.removeAnnotation(previousAnnotation)
         }
         
@@ -158,27 +158,27 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: MKMapViewDelegate {
-  func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+  func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
     //TODO: zoom baby
     
   }
   
-  func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+  func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
     self.mapView.setRegion(mapView.region, animated: true)
   }
   
-  func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+  func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
     self.mapView.setRegion(mapView.region, animated: true)
   }
   
-  func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
     return myRenderer
   }
   
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     if let annot = annotation as? UserLocationAnnotation {
       var annotView: MKAnnotationView
-      annotView = mapView.dequeueReusableAnnotationViewWithIdentifier(annot.userName) ?? UserLocationAnnotationView(annotation: annotation, reuseIdentifier: annot.userName)
+      annotView = mapView.dequeueReusableAnnotationView(withIdentifier: annot.userName) ?? UserLocationAnnotationView(annotation: annotation, reuseIdentifier: annot.userName)
       annotView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
       mappedUserAnnotations.append(annot)
       return annotView

@@ -4,7 +4,7 @@
 use_frameworks!
 
 target 'Kart' do
-pod 'PubNub/Fabric'
+#pod 'PubNub/Fabric'
 end
 
 target 'KartTests' do

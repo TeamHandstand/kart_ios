@@ -10,6 +10,13 @@
 		A9222DE91DFB302A000D124D /* KartLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9222DE81DFB302A000D124D /* KartLocationManager.swift */; };
 		A9222DEC1DFB6841000D124D /* AnnotationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9222DEB1DFB6841000D124D /* AnnotationAnimator.swift */; };
 		A94859931DFF6CBB00C1BB29 /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94859921DFF6CBB00C1BB29 /* MapOverlay.swift */; };
+		A94E32C01E42861400B057D4 /* Kart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A94E32BE1E42861400B057D4 /* Kart.xcdatamodeld */; };
+		A94E32CB1E428B0000B057D4 /* Team+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94E32C51E428B0000B057D4 /* Team+CoreDataClass.swift */; };
+		A94E32CC1E428B0000B057D4 /* Team+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94E32C61E428B0000B057D4 /* Team+CoreDataProperties.swift */; };
+		A94E32CD1E428B0000B057D4 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94E32C71E428B0000B057D4 /* User+CoreDataClass.swift */; };
+		A94E32CE1E428B0000B057D4 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94E32C81E428B0000B057D4 /* User+CoreDataProperties.swift */; };
+		A94E32CF1E428B0000B057D4 /* Ticket+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94E32C91E428B0000B057D4 /* Ticket+CoreDataClass.swift */; };
+		A94E32D01E428B0000B057D4 /* Ticket+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94E32CA1E428B0000B057D4 /* Ticket+CoreDataProperties.swift */; };
 		A97AC1341E245228004BB14E /* KartMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97AC1331E245228004BB14E /* KartMotionManager.swift */; };
 		A9B4AE761DFA3E43007ED80A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4AE751DFA3E43007ED80A /* AppDelegate.swift */; };
 		A9B4AE781DFA3E43007ED80A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4AE771DFA3E43007ED80A /* MapViewController.swift */; };
@@ -17,7 +24,6 @@
 		A9B4AE7D1DFA3E43007ED80A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9B4AE7B1DFA3E43007ED80A /* Main.storyboard */; };
 		A9B4AE7F1DFA3E43007ED80A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B4AE7E1DFA3E43007ED80A /* Assets.xcassets */; };
 		A9B4AE821DFA3E43007ED80A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9B4AE801DFA3E43007ED80A /* LaunchScreen.storyboard */; };
-		A9B4AE8D1DFA3E43007ED80A /* KartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4AE8C1DFA3E43007ED80A /* KartTests.swift */; };
 		A9B4AE981DFA3E43007ED80A /* KartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4AE971DFA3E43007ED80A /* KartUITests.swift */; };
 		A9B4AEA61DFA4074007ED80A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B4AEA51DFA4074007ED80A /* MapKit.framework */; };
 		A9B4AEA81DFA4191007ED80A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4AEA71DFA4191007ED80A /* Constants.swift */; };
@@ -52,6 +58,14 @@
 		A9222DE81DFB302A000D124D /* KartLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KartLocationManager.swift; sourceTree = "<group>"; };
 		A9222DEB1DFB6841000D124D /* AnnotationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationAnimator.swift; sourceTree = "<group>"; };
 		A94859921DFF6CBB00C1BB29 /* MapOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
+		A94E32BF1E42861400B057D4 /* Kart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kart.xcdatamodel; sourceTree = "<group>"; };
+		A94E32C11E4286C400B057D4 /* Kart 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Kart 2.xcdatamodel"; sourceTree = "<group>"; };
+		A94E32C51E428B0000B057D4 /* Team+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Team+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A94E32C61E428B0000B057D4 /* Team+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Team+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A94E32C71E428B0000B057D4 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A94E32C81E428B0000B057D4 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A94E32C91E428B0000B057D4 /* Ticket+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ticket+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A94E32CA1E428B0000B057D4 /* Ticket+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ticket+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A97AC1331E245228004BB14E /* KartMotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KartMotionManager.swift; sourceTree = "<group>"; };
 		A992B3C51DFF34F30046B7D0 /* Kart-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kart-Bridging-Header.h"; sourceTree = "<group>"; };
 		A9B4AE721DFA3E43007ED80A /* Kart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kart.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,8 +77,6 @@
 		A9B4AE811DFA3E43007ED80A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9B4AE831DFA3E43007ED80A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9B4AE881DFA3E43007ED80A /* KartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9B4AE8C1DFA3E43007ED80A /* KartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KartTests.swift; sourceTree = "<group>"; };
-		A9B4AE8E1DFA3E43007ED80A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9B4AE931DFA3E43007ED80A /* KartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B4AE971DFA3E43007ED80A /* KartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KartUITests.swift; sourceTree = "<group>"; };
 		A9B4AE991DFA3E43007ED80A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,6 +123,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A94E32C41E428AF300B057D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A94E32C51E428B0000B057D4 /* Team+CoreDataClass.swift */,
+				A94E32C61E428B0000B057D4 /* Team+CoreDataProperties.swift */,
+				A94E32C71E428B0000B057D4 /* User+CoreDataClass.swift */,
+				A94E32C81E428B0000B057D4 /* User+CoreDataProperties.swift */,
+				A94E32C91E428B0000B057D4 /* Ticket+CoreDataClass.swift */,
+				A94E32CA1E428B0000B057D4 /* Ticket+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A9B4AE691DFA3E43007ED80A = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +144,6 @@
 				A992B3C51DFF34F30046B7D0 /* Kart-Bridging-Header.h */,
 				A9B4AEA51DFA4074007ED80A /* MapKit.framework */,
 				A9B4AE741DFA3E43007ED80A /* Kart */,
-				A9B4AE8B1DFA3E43007ED80A /* KartTests */,
 				A9B4AE961DFA3E43007ED80A /* KartUITests */,
 				A9B4AE731DFA3E43007ED80A /* Products */,
 				E87D3CCB1E71CE16E204FF95 /* Pods */,
@@ -140,11 +164,13 @@
 		A9B4AE741DFA3E43007ED80A /* Kart */ = {
 			isa = PBXGroup;
 			children = (
+				A94E32C41E428AF300B057D4 /* Model */,
 				A9B4AEAD1DFA494F007ED80A /* Extensions.swift */,
 				A9B4AEAF1DFA94F8007ED80A /* PubNubManager.swift */,
 				A9B4AE751DFA3E43007ED80A /* AppDelegate.swift */,
 				A9B4AE771DFA3E43007ED80A /* MapViewController.swift */,
 				A9B4AEA71DFA4191007ED80A /* Constants.swift */,
+				A94E32BE1E42861400B057D4 /* Kart.xcdatamodeld */,
 				A9B4AEA91DFA41C7007ED80A /* UserLocation.swift */,
 				A9B4AEAB1DFA445B007ED80A /* UserLocationAnnotations.swift */,
 				A9B4AE791DFA3E43007ED80A /* SecondViewController.swift */,
@@ -156,15 +182,6 @@
 				A9B4AE831DFA3E43007ED80A /* Info.plist */,
 			);
 			path = Kart;
-			sourceTree = "<group>";
-		};
-		A9B4AE8B1DFA3E43007ED80A /* KartTests */ = {
-			isa = PBXGroup;
-			children = (
-				A9B4AE8C1DFA3E43007ED80A /* KartTests.swift */,
-				A9B4AE8E1DFA3E43007ED80A /* Info.plist */,
-			);
-			path = KartTests;
 			sourceTree = "<group>";
 		};
 		A9B4AE961DFA3E43007ED80A /* KartUITests */ = {
@@ -198,6 +215,7 @@
 				A9B4AE701DFA3E43007ED80A /* Resources */,
 				655604E56E14669C06C52680 /* Embed Pods Frameworks */,
 				61B12BAC21EC9993A76AB2E0 /* Copy Pods Resources */,
+				A9904CAC1E4298FE008FF06E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -257,6 +275,7 @@
 					A9B4AE711DFA3E43007ED80A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = T47MCQX4P8;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -265,10 +284,12 @@
 					};
 					A9B4AE871DFA3E43007ED80A = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = A9B4AE711DFA3E43007ED80A;
 					};
 					A9B4AE921DFA3E43007ED80A = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = A9B4AE711DFA3E43007ED80A;
 					};
 				};
@@ -351,6 +372,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kart/Pods-Kart-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A9904CAC1E4298FE008FF06E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7205cd5b0cf9a4b0c7a6f0d185d18d9f7478da23 e9dfaa87facd55cb4d18c16058d26cd576b989c6932033b121433ab51f65ca8c";
+		};
 		DCF8CBF4975EB76D11965B22 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,18 +407,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A94E32CB1E428B0000B057D4 /* Team+CoreDataClass.swift in Sources */,
 				A94859931DFF6CBB00C1BB29 /* MapOverlay.swift in Sources */,
 				A9B4AE7A1DFA3E43007ED80A /* SecondViewController.swift in Sources */,
 				A9B4AE761DFA3E43007ED80A /* AppDelegate.swift in Sources */,
 				A9B4AE781DFA3E43007ED80A /* MapViewController.swift in Sources */,
 				A9B4AEA81DFA4191007ED80A /* Constants.swift in Sources */,
+				A94E32CD1E428B0000B057D4 /* User+CoreDataClass.swift in Sources */,
+				A94E32C01E42861400B057D4 /* Kart.xcdatamodeld in Sources */,
 				A9B4AEAC1DFA445B007ED80A /* UserLocationAnnotations.swift in Sources */,
 				A9222DEC1DFB6841000D124D /* AnnotationAnimator.swift in Sources */,
+				A94E32CC1E428B0000B057D4 /* Team+CoreDataProperties.swift in Sources */,
 				A9B4AEB01DFA94F8007ED80A /* PubNubManager.swift in Sources */,
 				A9B4AEAA1DFA41C7007ED80A /* UserLocation.swift in Sources */,
+				A94E32CE1E428B0000B057D4 /* User+CoreDataProperties.swift in Sources */,
 				A97AC1341E245228004BB14E /* KartMotionManager.swift in Sources */,
+				A94E32D01E428B0000B057D4 /* Ticket+CoreDataProperties.swift in Sources */,
 				A9222DE91DFB302A000D124D /* KartLocationManager.swift in Sources */,
 				A9B4AEAE1DFA494F007ED80A /* Extensions.swift in Sources */,
+				A94E32CF1E428B0000B057D4 /* Ticket+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +433,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9B4AE8D1DFA3E43007ED80A /* KartTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +575,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Kart-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -551,6 +592,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Kart-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -562,6 +604,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Team-Handstand.KartTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kart.app/Kart";
 			};
 			name = Debug;
@@ -574,6 +617,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Team-Handstand.KartTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kart.app/Kart";
 			};
 			name = Release;
@@ -585,6 +629,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Team-Handstand.KartUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Kart;
 			};
 			name = Debug;
@@ -596,6 +641,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Team-Handstand.KartUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Kart;
 			};
 			name = Release;
@@ -640,6 +686,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A94E32BE1E42861400B057D4 /* Kart.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A94E32C11E4286C400B057D4 /* Kart 2.xcdatamodel */,
+				A94E32BF1E42861400B057D4 /* Kart.xcdatamodel */,
+			);
+			currentVersion = A94E32BF1E42861400B057D4 /* Kart.xcdatamodel */;
+			path = Kart.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A9B4AE6A1DFA3E43007ED80A /* Project object */;
 }

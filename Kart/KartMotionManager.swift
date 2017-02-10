@@ -12,7 +12,7 @@ import CoreMotion
 final class KartMotionManager: CMMotionManager {
   static let sharedInstance = KartMotionManager()
   
-  private override init() {
+  fileprivate override init() {
     super.init()
     accelerometerUpdateInterval = 0.01
     

@@ -64,9 +64,9 @@ class UserLocationAnnotationView: MKAnnotationView {
     super.init(coder: aDecoder)
   }
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-  }
+//  override init(frame: CGRect) {
+//    super.init(frame: frame)
+//  }
   
   override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
     super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -76,13 +76,13 @@ class UserLocationAnnotationView: MKAnnotationView {
     addSubview(circleImageView)
     
     nameLabel = UILabel()
-    nameLabel.textColor = UIColor.blackColor()
+    nameLabel.textColor = UIColor.black
     nameLabel.text = "? ?"
-    nameLabel.textAlignment = .Center
-    nameLabel.font = UIFont.systemFontOfSize(8)
+    nameLabel.textAlignment = .center
+    nameLabel.font = UIFont.systemFont(ofSize: 8)
     
     if let annot = annotation as? UserLocationAnnotation {
-      let nameArray = annot.userName.capitalizedString.characters.split{$0 == " "}.map(String.init)
+      let nameArray = annot.userName.capitalized.characters.split{$0 == " "}.map(String.init)
       for i in 0...nameArray.count-1 {
         if i == 0 {
           nameLabel.text = "\(nameArray[i].characters.first!)"

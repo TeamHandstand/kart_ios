@@ -26,29 +26,29 @@ class SecondViewController: UIViewController {
     let tapper = UITapGestureRecognizer(target: self, action: #selector(SecondViewController.tapperTapped))
     view.addGestureRecognizer(tapper)
     
-    firstNameTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(KartUserDefaultsFirstName)
-    lastNameTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(KartUserDefaultsLastName)
+    firstNameTextField.text = UserDefaults.standard.string(forKey: KartUserDefaultsFirstName)
+    lastNameTextField.text = UserDefaults.standard.string(forKey: KartUserDefaultsLastName)
     
-    KartMotionManager.sharedInstance.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) { (data, error) in
+    KartMotionManager.sharedInstance.startAccelerometerUpdates(to: OperationQueue.main) { (data, error) in
       self.xLabel.text = "X: \(data?.acceleration.x)" // == 0 when flat camera down
       self.yLabel.text = "Y: \(data?.acceleration.y)" // == 0 when flat camera down
       self.zLabel.text = "Z: \(data?.acceleration.z)" // == -1 when flat camera down
     }
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SecondViewController.newLocationReceived), name: KartNotificationNewUserLocationGenerated, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(SecondViewController.newLocationReceived), name: NSNotification.Name(rawValue: KartNotificationNewUserLocationGenerated), object: nil)
   }
   
   func tapperTapped() {
-    NSUserDefaults.standardUserDefaults().setObject(firstNameTextField.text, forKey: KartUserDefaultsFirstName)
-    NSUserDefaults.standardUserDefaults().setObject(lastNameTextField.text, forKey: KartUserDefaultsLastName)
+    UserDefaults.standard.set(firstNameTextField.text, forKey: KartUserDefaultsFirstName)
+    UserDefaults.standard.set(lastNameTextField.text, forKey: KartUserDefaultsLastName)
     view.endEditing(false)
   }
   
-  @IBAction func switchChanged(sender: AnyObject) {
-    if trackingSwitch.on {
+  @IBAction func switchChanged(_ sender: AnyObject) {
+    if trackingSwitch.isOn {
       KartLocationManager.sharedInstance.startUpdatingLocation()
       trackingLabel.text = "Tracking Location"
     } else {
@@ -57,34 +57,34 @@ class SecondViewController: UIViewController {
     }
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
     
-    NSUserDefaults.standardUserDefaults().setObject(firstNameTextField.text, forKey: KartUserDefaultsFirstName)
-    NSUserDefaults.standardUserDefaults().setObject(lastNameTextField.text, forKey: KartUserDefaultsLastName)
+    UserDefaults.standard.set(firstNameTextField.text, forKey: KartUserDefaultsFirstName)
+    UserDefaults.standard.set(lastNameTextField.text, forKey: KartUserDefaultsLastName)
   }
   
   func newLocationReceived() {
-    haloAnimateWithColor(UIColor.blueColor(), pulses: 1, duration: 0.5)
+    haloAnimateWithColor(UIColor.blue, pulses: 1, duration: 0.5)
   }
   
-  func haloAnimateWithColor(color: UIColor, pulses: Int, duration: Double) {
+  func haloAnimateWithColor(_ color: UIColor, pulses: Int, duration: Double) {
     let nextPulses = pulses-1;
     
-    let haloView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: 15, height: 15)))
+    let haloView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 15, height: 15)))
     haloView.center = CGPoint(x: trackingSwitch.center.x , y: arrowImage.center.y)
     haloView.layer.cornerRadius = haloView.frame.size.height/2.0;
     haloView.layer.masksToBounds = true
     haloView.layer.borderWidth = 0.5
-    haloView.layer.borderColor = color.CGColor
-    haloView.backgroundColor = color.colorWithAlphaComponent(0.6)
+    haloView.layer.borderColor = color.cgColor
+    haloView.backgroundColor = color.withAlphaComponent(0.6)
     view.addSubview(haloView)
     
-    UIView.animateWithDuration(duration, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { 
+    UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: { 
       haloView.alpha = 0
-      haloView.transform = CGAffineTransformMakeScale(3, 3);
+      haloView.transform = CGAffineTransform(scaleX: 3, y: 3);
       }) { (comp) in
         haloView.removeFromSuperview()
         if nextPulses > 0 {

@@ -13,10 +13,10 @@ final class KartLocationManager: CLLocationManager {
   static let sharedInstance = KartLocationManager()
   
   //This prevents others from using the default '()' initializer for this class.
-  private override init() {
+  fileprivate override init() {
     super.init()
     allowsBackgroundLocationUpdates = true
-    activityType = .Fitness
+    activityType = .fitness
     pausesLocationUpdatesAutomatically = false //true
     desiredAccuracy = kCLLocationAccuracyBest // kCLLocationAccuracyNearestTenMeters
   }
